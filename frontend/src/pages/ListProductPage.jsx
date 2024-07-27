@@ -16,10 +16,8 @@ function ListProductPage() {
   const { role } = useSelector((state) => state.loginSlice);
   const { products } = useSelector((state) => state.productSlice);
 
-  const [isOpen, setIsOpen] = useState({
-    status: false,
-    id: ''
-  });
+  const [isOpen, setIsOpen] = useState(false);
+  const [id, setId] = useState('');
 
   useEffect(() => {
     if (!role) {
@@ -37,19 +35,19 @@ function ListProductPage() {
 
       {products.map((v, i) => (
         <div key={i}>
-          <Card product={v} setIsOpen={setIsOpen}></Card>
+          <Card product={v} setIsOpen={setIsOpen} setId={setId}></Card>
         </div>
       ))}
 
       {role === "merchant" && (
         <FontAwesomeIcon
           icon={faPlus}
-          className="text-white bg-[var(--primary)] py-4 px-4 shadow rounded absolute bottom-8 right-5 drop-shadow-md"
+          className="text-white bg-[var(--primary)] py-4 px-4 shadow rounded absolute bottom-8 right-5 drop-shadow-md cursor-pointer"
           onClick={() => navigate('/products/create')}
         />
       )}
 
-      {isOpen.status && (<Modal isOpen={isOpen} setIsOpen={setIsOpen}></Modal>)}
+      {isOpen && (<Modal nutrition={products.find(v => v.id === id)} setIsOpen={setIsOpen}></Modal>)}
     </div>
   );
 }

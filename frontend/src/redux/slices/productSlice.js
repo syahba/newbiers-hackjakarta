@@ -113,4 +113,19 @@ export const createProduct = (product) => async (dispatch) => {
   };
 };
 
+export const generateNutrition = (ingredient) => async (dispatch) => {
+  try {
+    const { data: { data } } = await axios({
+      method: 'post',
+      url: `http://172.16.59.65:8000/api/product/generate/nutriscore`,
+      data: ingredient,
+      responseType: 'json'
+    });
+
+    return dispatch(setIngredient(data));
+  } catch (err) {
+    return dispatch(setIngredient({}));
+  };
+};
+
 export default productSlice.reducer;

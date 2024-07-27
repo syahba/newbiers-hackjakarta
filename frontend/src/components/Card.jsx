@@ -2,16 +2,19 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 
-function Card({ product, setIsOpen }) {
+function Card({ product, setIsOpen, setId }) {
   const { role } = useSelector((state) => state.loginSlice);
 
   return (
     <div className="mx-4 bg-white drop-shadow-md rounded-md flex items-start gap-4 my-3">
       <div className="relative w-28">
         <h1
-          className="py-1 px-2 font-bold text-white text-sm absolute rounded-tl-md"
+          className="py-1 px-2 font-bold text-white text-sm absolute rounded-tl-md cursor-pointer"
           style={{ backgroundColor: product.grade_detail.color }}
-          onClick={() => setIsOpen({ status: true, id: product.id })}
+          onClick={() => {
+            setIsOpen(true);
+            setId(product.id);
+          }}
         >
           {product.grade}
         </h1>
@@ -34,7 +37,7 @@ function Card({ product, setIsOpen }) {
           <p className="text-sm">{product.price}</p>
 
           {role === "merchant" && (
-            <FontAwesomeIcon icon={faPenToSquare} />
+            <FontAwesomeIcon icon={faPenToSquare} className="cursor-pointer" />
           )}
         </div>
       </div>

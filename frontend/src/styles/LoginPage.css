@@ -1,5 +1,5 @@
 .login-container {
-  @apply items-center justify-center h-[800px] gap-56;
+  @apply items-center justify-center gap-56;
   display: flex;
   flex-direction: column;
 }

@@ -1,55 +1,40 @@
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getDetailProduct } from "../redux/slices/productSlice";
 
-function Modal({ isOpen, setIsOpen }) {
-  const dispatch = useDispatch();
-
-  const { product } = useSelector((state) => state.productSlice);
-
-  useEffect(() => {
-    dispatch(getDetailProduct(isOpen.id));
-  }, [product]);
-
+function Modal({ nutrition, setIsOpen }) {
+  console.log(nutrition);
   return (
-    <div className="fixed inset-0 bg-[#1515153b]">
-      {Object.keys(product).length !== 0 && (
-        <div className="bg-white drop-shadow-lg rounded-lg m-4 p-4">
-          <div className="flex items-center justify-between mb-3">
-            <h1
-              className="text-xl font-bold"
-              style={{ color: product.grade_detail.color }}
-            >
-              {product.grade_detail.title}
-            </h1>
-            <FontAwesomeIcon
-              icon={faXmark}
-              onClick={() => setIsOpen({ status: false, id: "" })}
-            />
-          </div>
-
-          <p className="text-xs">
-            Nutri-Score A is a rating given to foods that are considered the
-            healthiest options. It is part of the Nutri-Score labeling system,
-            which helps consumers make healthier food choices. 
-          </p>
-
-          <a
-            className="text-[10px] underline text-[#0075FF]"
-            href={product.grade_detail.url}
+    <div className="bg-[#1515153b]">
+      <div className="bg-white drop-shadow-lg rounded-lg m-4 p-4 w-[360px] h-fit absolute inset-0">
+        <div className="flex items-center justify-between mb-3">
+          <h1
+            className="text-xl font-bold"
+            style={{ color: nutrition.grade_detail.color }}
           >
-            Here detail about Nutri-Score
-          </a>
-
-          <img
-            className="w-72 h-44 object-cover mt-1"
-            src={product.grade_detail.image}
-            alt=""
+            {nutrition.grade_detail.title}
+          </h1>
+          <FontAwesomeIcon
+            icon={faXmark}
+            onClick={() => setIsOpen(false)}
+            className="cursor-pointer"
           />
         </div>
-      )}
+
+        <p className="text-xs">{nutrition.grade_detail.description}</p>
+
+        <a
+          className="text-[10px] underline text-[#0075FF]"
+          href={nutrition.grade_detail.url}
+        >
+          Here detail about Nutri-Score
+        </a>
+
+        <img
+          className="w-72 h-44 object-cover mt-1"
+          src={nutrition.grade_detail.image}
+          alt="nutri-score"
+        />
+      </div>
     </div>
   );
 }
