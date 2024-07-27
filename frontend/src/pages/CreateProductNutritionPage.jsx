@@ -15,7 +15,7 @@ function CreateProductNutritionPage() {
   });
 
   return (
-    <div>
+    <div className="relative h-full">
       <Navbar header={"Create Product - Nutri-Score"}></Navbar>
       <div className="mb-6">
         <div className="input-group-uniq">
@@ -38,9 +38,18 @@ function CreateProductNutritionPage() {
         </div>
       </div>
 
-      <div className="flex justify-between mx-4">
-        <button className="bg-white outline outline-1 outline-[var(--secondary)] rounded px-12 py-2">Help Fill Form</button>
-        <button className="bg-[var(--primary)] rounded px-10 py-2 text-white">Next</button>
+      <div className="absolute bottom-0 w-full bg-white text-sm">
+        <div className="flex mx-4 pt-3 pb-5 gap-3">
+          <button className="bg-white grow outline outline-1 outline-[var(--secondary)] rounded py-2">
+          Generate Nutri-Score
+          </button>
+          <button
+            className="bg-[var(--primary)] w-1/3 rounded py-2 text-white"
+            // onClick={submitHandler}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   )
