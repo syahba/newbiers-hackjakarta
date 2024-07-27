@@ -39,13 +39,13 @@ async function getAllProduct(){
 
 async function getProductById(id){
     try{
-        const product = await prisma.product.findMany({
+        const product = await prisma.product.findUnique({
             where: {id:id}
         });
         return product;
     }
     catch (err){
-        return err;
+        throw err;
     }
 }
 
@@ -83,7 +83,7 @@ async function updateProduct(id,product){
         return id;
     }
     catch (err){
-        return err;
+        throw err;
     }
 }
 
