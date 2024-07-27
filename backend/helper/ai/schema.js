@@ -1,5 +1,5 @@
 const ingredientNutrition = {
-  "description": "buat list ingredient dasar untuk membuat sebuah raw {{name}} dan berikan takaran pasti untuk setiap ingredient nya serta menghitung persentase fruit, vegetables dan legumes dari ingredient serta menentukan type food atau beverage",
+  "description": "buat list ingredient dasar untuk membuat sebuah raw {{name}} dan berikan takaran pasti untuk setiap ingredient nya serta menghitung nutrition bredasarkan ingredient serta menentukan type food atau beverage",
   "type": "object",
   "properties": {
     "type": {

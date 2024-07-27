@@ -53,7 +53,7 @@ async function generateNutrition(ingredients) {
   }, schema.description)
 
   // prompt
-  const input = `Follow JSON with minified version schema.<JSONSchema>${JSON.stringify(
+  const input = `Follow JSON schema.<JSONSchema>${JSON.stringify(
       schema
     )}</JSONSchema>`;
   

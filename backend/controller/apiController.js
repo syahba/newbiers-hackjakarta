@@ -144,7 +144,7 @@ router.post('/generate/nutriscore',async (req,res)=>{
         const ingredients = req.body.ingredients
 
         const nutritionData = await ai.generateNutrition(ingredients)
-        const gradeData = Grade.generateContent(type, nutritionData)
+        const gradeData = Grade.generateContent(type, nutritionData.nutrition)
 
         const respond = {
             message:"success",
