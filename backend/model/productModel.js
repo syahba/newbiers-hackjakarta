@@ -49,6 +49,21 @@ async function getProductById(id){
     }
 }
 
+async function getProductByName(name){
+    try{
+        const product = await prisma.product.findMany({
+            where: {name:{
+                contains: name,
+                mode: 'insensitive'
+            }}
+        });
+        return product;
+    }
+    catch (err){
+        return err;
+    }
+}
+
 async function updateProduct(id,product){
     try{
         await prisma.product.update({
@@ -72,4 +87,4 @@ async function updateProduct(id,product){
     }
 }
 
-module.exports = {createProduct,getAllProduct,getProductById,updateProduct};
+module.exports = {createProduct,getAllProduct,getProductById,getProductByName,updateProduct};
