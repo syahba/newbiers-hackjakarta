@@ -47,7 +47,7 @@ router.get('/:id',async (req,res)=>{
     if(product === null){
         return res.status(404).json({message:"Product Not Found"});
     }
-    product.grade_detail = Function.getGrade(element.grade, element.type)
+    product.grade_detail = Function.getGrade(product.grade, product.type)
     const respond = {
         message: "success",
         data: product
