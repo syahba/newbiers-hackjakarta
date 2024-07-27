@@ -15,7 +15,8 @@ router.get('/',async (req,res)=>{
         const data = product.map(element => {
             return {
                 ...element,
-                grade_detail: Function.getGrade(element.grade, element.type)
+                grade_detail: Function.getGrade(element.grade, element.type),
+                ingredients: element.ingredient
             }
         })
         const respond = {
@@ -29,7 +30,8 @@ router.get('/',async (req,res)=>{
     const data = productList.map(element => {
         return {
             ...element,
-            grade_detail: Function.getGrade(element.grade, element.type)
+            grade_detail: Function.getGrade(element.grade, element.type),
+            ingredients: element.ingredient
         }
     })
     const respond = {
@@ -48,6 +50,7 @@ router.get('/:id',async (req,res)=>{
         return res.status(404).json({message:"Product Not Found"});
     }
     product.grade_detail = Function.getGrade(product.grade, product.type)
+    product.ingredients = product.ingredient
     const respond = {
         message: "success",
         data: product
