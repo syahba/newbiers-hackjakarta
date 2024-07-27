@@ -13,7 +13,7 @@ async function generateIngredientNutrition(name) {
   schema.description = Function.schemaReplacer({name}, schema.description)
 
   // prompt
-  const input = `Follow JSON with minified version schema.<JSONSchema>${JSON.stringify(
+  const input = `Follow JSON schema.<JSONSchema>${JSON.stringify(
       schema
     )}</JSONSchema>`;
   
@@ -29,7 +29,7 @@ async function generateIngredientNutrition(name) {
 
   try {
       const result = await chat.sendMessage(input);
-      console.log(result.response.text)
+      // console.log(result.response.text())
       const res =result.response.text()
         .replace("```json", "")
         .replace("```", "")

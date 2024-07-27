@@ -85,7 +85,7 @@ const nutrition = {
   "type": "object",
   "properties": {
     "nutrition": {
-      "description": "jangan ada field tambahan",
+      "description": "dont add field and answer with english",
       "type": "object",
       "properties": {
         "energy": {
