@@ -5,7 +5,7 @@ import FormIngredient from "../components/FormIngredient";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct, generateNutrition } from "../redux/slices/productSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function CreateProductNutritionPage() {
   const dispatch = useDispatch();
@@ -13,8 +13,17 @@ function CreateProductNutritionPage() {
 
   const { state } = useLocation();
   const { ingredient } = useSelector((state) => state.productSlice);
+  const { role } = useSelector(state => state.loginSlice);
 
-  const [ingredients, setIngredients] = useState(ingredient.ingredients)
+  const [ingredients, setIngredients] = useState([]);
+
+  useEffect(() => {
+    if (!role) {
+      navigate("/");
+    } else {
+      setIngredients(ingredient.ingredients);
+    };
+  }, [ingredient]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -32,9 +41,8 @@ function CreateProductNutritionPage() {
     e.preventDefault();
 
     dispatch(generateNutrition(ingredient.type, ingredients));
-  }
+  };
 
-  console.log(ingredient);
   return (
     <div className="relative h-full">
       {Object.keys(ingredient).length !== 0 ? (
@@ -65,13 +73,16 @@ function CreateProductNutritionPage() {
             </div>
 
             <div className="mx-4 mb-3">
-              <FormIngredient ingredient={ingredients} setIngredient={setIngredients} />
+              <FormIngredient
+                ingredient={ingredients}
+                setIngredients={setIngredients}
+              />
             </div>
           </div>
 
           <div className="absolute bottom-0 w-full bg-white text-sm">
             <div className="flex mx-4 pt-3 pb-5 gap-3">
-              <button 
+              <button
                 className="bg-white grow outline outline-1 outline-[var(--secondary)] rounded py-2"
                 onClick={gnenerateNutrition}
               >

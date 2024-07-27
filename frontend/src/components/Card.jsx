@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 function Card({ product, setIsOpen, setId }) {
   const { role } = useSelector((state) => state.loginSlice);
-  console.log(product)
+  
   return (
     <div className="mx-4 bg-white drop-shadow-md rounded-md flex items-start gap-4 my-3">
       <div className="relative w-28">

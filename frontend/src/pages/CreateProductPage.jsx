@@ -12,6 +12,13 @@ function CreateProductPage() {
   const dispatch = useDispatch();
 
   const { url } = useSelector((state) => state.productSlice);
+  const { role } = useSelector(state => state.loginSlice);
+
+  useEffect(() => {
+    if (!role) {
+      navigate("/");
+    };
+  }, []);
 
   const [input, setInput] = useState({
     name: "",
