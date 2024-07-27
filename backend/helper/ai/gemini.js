@@ -9,7 +9,7 @@ async function generateIngredientNutrition(name) {
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
   // untuk menentukan schema yang dipakai
-  const schema = {...JSONSchema.nutrition}
+  const schema = {...JSONSchema.ingredientNutrition}
   schema.description = Function.schemaReplacer({name}, schema.description)
 
   // prompt
@@ -41,8 +41,47 @@ async function generateIngredientNutrition(name) {
   }
 }
 
+async function generateNutrition(ingredients) {
+  console.time("AI.generateNutrition")
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+  // untuk menentukan schema yang dipakai
+  const schema = {...JSONSchema.nutrition}
+  schema.description = Function.schemaReplacer({
+    ingredients: Function.ingredientsParser(ingredients)
+  }, schema.description)
+
+  // prompt
+  const input = `Follow JSON with minified version schema.<JSONSchema>${JSON.stringify(
+      schema
+    )}</JSONSchema>`;
+  
+  // configure chat ai
+  const chat = model.startChat({
+      history: [],
+      generationConfig: {
+        temperature: 0,
+        topP: 0,
+        topK: 0,
+      }
+  });
+
+  try {
+      const result = await chat.sendMessage(input);
+      const res = result.response.text()
+        .replace("```json", "")
+        .replace("```", "")
+      return JSON.parse(res);
+  } catch (error) {
+      console.error("Error sending message:", error);
+      throw error;
+  } finally {
+      console.timeEnd("AI.generateNutrition")
+  }
+}
 
 
 module.exports = {
   generateIngredientNutrition,
+  generateNutrition
 };

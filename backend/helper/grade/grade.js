@@ -1,11 +1,11 @@
 const GradeFunction = require("./function")
 const GradeConst = require("./const")
 
-function generateContent(generated) {
+function generateContent(type, nutrition) {
   try {
       // check point food or beverage
       let point, calculate, check
-      switch (generated.type) {
+      switch (type) {
           case "food":
               point = GradeConst.POINTS_FOOD
               calculate = GradeFunction.calculatePointFood
@@ -22,27 +22,14 @@ function generateContent(generated) {
       }
 
       const allNutrition = {
-          energy: 0,
-          saturated_fatty: 0,
-          sugar: 0,
-          salt: 0,
-          protein: 0,
-          fibres: 0,
-          fruit_vegetable_legumes: 0,
+          energy: nutrition.energy || 0,
+          saturated_fatty: nutrition.saturated_fatty || 0,
+          sugar: nutrition.sugar || 0,
+          salt: nutrition.salt || 0,
+          protein: nutrition.protein || 0,
+          fibres: nutrition.fibres || 0,
+          fruit_vegetable_legumes: nutrition.fruit_vegetable_legumes || 0,
       }
-
-      // sum all nutrition
-      generated.ingredient.forEach(elm => {
-          let elmNutrition = elm.nutrition
-
-          allNutrition.energy += elmNutrition.energy || 0
-          allNutrition.saturated_fatty += elmNutrition.saturated_fatty || 0
-          allNutrition.sugar += elmNutrition.sugar || 0
-          allNutrition.salt += elmNutrition.salt || 0
-          allNutrition.protein += elmNutrition.protein || 0
-          allNutrition.fibres += elmNutrition.fibres || 0
-      })
-      allNutrition["fruit_vegetable_legumes"] = generated.fruit_vegetable_legumes || 0
 
       let allPoint = {
           energy: 0,

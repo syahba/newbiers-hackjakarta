@@ -7,6 +7,14 @@ function schemaReplacer(payload, target) {
   return target
 }
 
+function ingredientsParser(ingredients) {
+  const tempArray = ingredients.map(elm => {
+    return `${elm.name} ${elm.measurements}` 
+  })
+
+  return tempArray.join(", ")
+}
+
 function getGrade(grade, type) {
   const gradeData = Const.GRADES[grade] 
   return {
@@ -21,5 +29,6 @@ function getGrade(grade, type) {
 
 module.exports = {
   schemaReplacer,
+  ingredientsParser,
   getGrade,
 };

@@ -36,6 +36,7 @@ router.get('/',async (req,res)=>{
         message: "success",
         data: data
     }
+
     return res.status(200).json(respond);
 });
 
@@ -117,7 +118,7 @@ router.post('/generate/ingredient-nutriscore',async (req,res)=>{
         const name = req.body.name
 
         const generatedData = await ai.generateIngredientNutrition(name)
-        const gradeData = Grade.generateContent(generatedData)
+        const gradeData = Grade.generateContent(generatedData.type, generatedData.nutrition)
 
         const respond = {
             message:"success",
@@ -128,6 +129,32 @@ router.post('/generate/ingredient-nutriscore',async (req,res)=>{
                 grade_detail: Function.getGrade(gradeData.grade, generatedData.type),
                 nutrition: generatedData.nutrition ?? {},
                 ingredients: generatedData.ingredient ?? []
+            }
+        }
+        return res.status(200).json(respond);
+    }
+    catch (err){
+        return res.status(500).json({message:"something went wrong",error:err});
+    }
+});
+
+router.post('/generate/nutriscore',async (req,res)=>{
+    try{
+        const type = req.body.type
+        const ingredients = req.body.ingredients
+
+        const nutritionData = await ai.generateNutrition(ingredients)
+        const gradeData = Grade.generateContent(type, nutritionData)
+
+        const respond = {
+            message:"success",
+            data: {
+                score: gradeData.score,
+                type: type,
+                grade: gradeData.grade,
+                grade_detail: Function.getGrade(gradeData.grade, type),
+                nutrition: nutritionData ?? {},
+                ingredients: ingredients ?? []
             }
         }
         return res.status(200).json(respond);
