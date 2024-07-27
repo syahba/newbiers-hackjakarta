@@ -14,7 +14,7 @@ function App() {
         <Route path="/products/create/nutrition" element={<CreateProductNutritionPage></CreateProductNutritionPage>}></Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
