@@ -7,7 +7,8 @@ const productSlice = createSlice({
     products: [],
     product: {},
     url: '',
-    ingredient: {}
+    ingredient: {},
+    message: ''
   },
   reducers: {
     setAllProducts(state, action) {
@@ -21,11 +22,14 @@ const productSlice = createSlice({
     },
     setIngredient(state, action) {
       state.ingredient = action.payload;
+    },
+    setMessage(state, action) {
+      state.message = action.payload;
     }
   }
 });
 
-export const { setAllProducts, setDetailProduct, setImageUrl, setIngredient } = productSlice.actions;
+export const { setAllProducts, setDetailProduct, setImageUrl, setIngredient, setMessage } = productSlice.actions;
 
 export const getAllProducts = (search = '') => async (dispatch) => {
   try {
@@ -91,6 +95,21 @@ export const generateIngredient = (name) => async (dispatch) => {
     return dispatch(setIngredient(data));
   } catch (err) {
     return dispatch(setIngredient({}));
+  };
+};
+
+export const createProduct = (product) => async (dispatch) => {
+  try {
+    const { data: { message } } = await axios({
+      method: 'post',
+      url: `http://172.16.59.65:8000/api/product`,
+      data: product,
+      responseType: 'json'
+    });
+
+    return dispatch(setMessage(message));
+  } catch (err) {
+    return dispatch(setMessage('error'));
   };
 };
 

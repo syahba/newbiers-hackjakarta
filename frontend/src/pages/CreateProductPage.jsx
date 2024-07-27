@@ -50,7 +50,7 @@ function CreateProductPage() {
       dispatch(generateIngredient(input.name));
 
       input.image = url;
-      navigation("/products/nutrition", { state: input });
+      navigation("/products/create/nutrition", { state: input });
     }
   };
 

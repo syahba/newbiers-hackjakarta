@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Nutrition() {
 
   return (
-    <div className="bg-white p-3 text-sm font-normal w-full rounded flex flex-col items-start outline outline-[var(--grey)]">
+    <div className="bg-white p-3 text-sm font-normal w-full rounded flex flex-col items-start outline outline-1 outline-[var(--grey)]">
       <div className="flex justify-between w-full">
         <div className="text-[var(--grey)]">Energy</div>
         <div className="flex">

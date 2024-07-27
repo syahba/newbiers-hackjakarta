@@ -2,8 +2,18 @@ import Navbar from "../components/Navbar";
 import CardGrade from "../components/CardGrade";
 import Nutrition from "../components/Nutrition"
 import FormIngredient from "../components/FormIngredient"
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 function CreateProductNutritionPage() {
+  const { state } = useLocation();
+  const { ingredient } = useSelector((state) => state.productSlice);
+
+  const [isOpen, setIsOpen] = useState({
+    status: false,
+    id: ''
+  });
+
   return (
     <div>
       <Navbar header={"Create Product - Nutri-Score"}></Navbar>
@@ -12,7 +22,7 @@ function CreateProductNutritionPage() {
           <label htmlFor="name" className="product-label-uniq">
             Product Name
           </label>
-          <input type="text" id="name" className="product-input-uniq" />
+          <input type="text" id="name" className="product-input-uniq" value={'ini value'} readOnly disabled />
         </div>
 
         <div className="mx-4 mb-3">
