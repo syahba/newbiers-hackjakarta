@@ -31,7 +31,7 @@ function CreateProductNutritionPage() {
   const gnenerateNutrition = (e) => {
     e.preventDefault();
 
-    dispatch(generateNutrition(ingredients));
+    dispatch(generateNutrition(ingredient.type, ingredients));
   }
 
   console.log(ingredient);

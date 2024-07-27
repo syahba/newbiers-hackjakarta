@@ -7,8 +7,7 @@ function FormIngredient({ ingredient, setIngredient }) {
   useEffect(() => {
     setIngredient(ingredient);
   }, [ingredient]);
-
-
+console.log(ingredient)
   return (
     <div>
       <div className="mb-1 text-xs flex justify-between">

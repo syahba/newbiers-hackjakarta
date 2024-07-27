@@ -113,12 +113,15 @@ export const createProduct = (product) => async (dispatch) => {
   };
 };
 
-export const generateNutrition = (ingredient) => async (dispatch) => {
+export const generateNutrition = (type, ingredient) => async (dispatch) => {
   try {
     const { data: { data } } = await axios({
       method: 'post',
       url: `http://172.16.59.65:8000/api/product/generate/nutriscore`,
-      data: ingredient,
+      data: {
+        type: type,
+        ingredients: ingredient
+      },
       responseType: 'json'
     });
 
