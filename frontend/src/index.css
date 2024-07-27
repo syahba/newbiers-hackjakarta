@@ -9,14 +9,14 @@
   --primary: #00B14F;
   --secondary: #005339;
   --neutral: #2D2D2D;
-  --white: #fff;
 }
+
 * {
   text-decoration: none;
 }
 
 html {
-  @apply scroll-smooth;
+  @apply scroll-smooth h-[800px];
 }
 
 body {
