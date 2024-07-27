@@ -18,20 +18,20 @@ function CreateProductNutritionPage() {
 
     const payload = {
       ...state,
-      ...ingredient
+      ...ingredient,
     };
 
     dispatch(createProduct(payload));
-    navigate('/products');
+    navigate("/products");
   };
 
   return (
     <div className="">
       {Object.keys(ingredient).length !== 0 ? (
-        <div className="relative h-[800px]">
+        <div className="relative h-full">
           <Navbar header={"Create Product - Nutri-Score"}></Navbar>
 
-          <div className="mb-6">
+          <div className="mb-6 max-h-[80%] overflow-y-auto">
             <div className="input-group-uniq">
               <label htmlFor="name" className="product-label-uniq">
                 Product Name

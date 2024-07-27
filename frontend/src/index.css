@@ -37,7 +37,7 @@ html {
 }
 
 .input-group-uniq {
-  @apply mx-4 my-6;
+  @apply mx-4 mb-6;
   display: flex;
   flex-direction: column;
 }
