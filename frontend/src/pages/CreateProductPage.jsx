@@ -55,18 +55,18 @@ function CreateProductPage() {
   };
 
   return (
-    <div>
+    <div className="relative h-full">
       <Navbar header={"Create Product"}></Navbar>
 
       <div className="mb-6">
         <div className="input-group">
-          <label htmlFor="name" className="product-label">
+          <label htmlFor="name" className="product-label-uniq">
             Product Name
           </label>
           <input
             type="text"
             id="name"
-            className="product-input"
+            className="product-input-uniq"
             value={input.name}
             onChange={inputHandler}
           />
@@ -122,16 +122,18 @@ function CreateProductPage() {
         </div>
       </div>
 
-      <div className="flex justify-between mx-4">
-        <button className="bg-white outline outline-1 outline-[var(--secondary)] rounded px-12 py-2 drop-shadow">
-          Help Fill Form
-        </button>
-        <button
-          className="bg-[var(--primary)] rounded px-10 py-2 text-white drop-shadow-md"
-          onClick={submitHandler}
-        >
-          Next
-        </button>
+      <div className="absolute bottom-0 w-full bg-white">
+        <div className="flex mx-4 pt-3 pb-5 gap-3">
+          <button className="bg-white grow outline outline-1 outline-[var(--secondary)] rounded px-12 py-2">
+            Help Fill Form
+          </button>
+          <button
+            className="bg-[var(--primary)]  rounded px-10 py-2 text-white"
+            onClick={submitHandler}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -37,7 +37,7 @@ body {
 }
 
 .product-input {
-  @apply outline outline-1 outline-[var(--grey)] rounded py-2 px-3;
+  @apply outline outline-1 outline-[var(--grey)] rounded py-1 px-3;
 }
 
 .input-group-uniq {
@@ -51,7 +51,7 @@ body {
 }
 
 .product-input-uniq {
-  @apply outline outline-1 outline-[var(--secondary)] shadow shadow-[var(--secondary)] rounded py-2 px-3;
+  @apply outline outline-1 outline-[var(--secondary)] shadow shadow-[var(--secondary)] rounded py-1 px-3 ;
 }
 
 .product-input:focus {
