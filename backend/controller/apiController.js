@@ -15,14 +15,7 @@ router.get('/',async (req,res)=>{
         const data = product.map(element => {
             return {
                 ...element,
-                grade_detail: {
-                    grade: "A",
-                    title: "Nutri-Score A",
-                    description: "",
-                    color: "",
-                    image: "",
-                    url: ""
-                }
+                grade_detail: Function.getGrade(element.grade, element.type)
             }
         })
         const respond = {
@@ -36,14 +29,7 @@ router.get('/',async (req,res)=>{
     const data = productList.map(element => {
         return {
             ...element,
-            grade_detail: {
-                grade: "A",
-                title: "Nutri-Score A",
-                description: "",
-                color: "",
-                image: "",
-                url: ""
-            }
+            grade_detail: Function.getGrade(element.grade, element.type)
         }
     })
     const respond = {
@@ -60,14 +46,7 @@ router.get('/:id',async (req,res)=>{
     if(product === null){
         return res.status(404).json({message:"Product Not Found"});
     }
-    product.grade_detail = {
-        grade: "A",
-        title: "Nutri-Score A",
-        description: "",
-        color: "",
-        image: "",
-        url: ""
-    }
+    product.grade_detail = Function.getGrade(element.grade, element.type)
     const respond = {
         message: "success",
         data: product
