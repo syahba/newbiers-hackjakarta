@@ -122,13 +122,13 @@ function CreateProductPage() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 w-full bg-white">
+      <div className="absolute bottom-0 w-full bg-white text-sm">
         <div className="flex mx-4 pt-3 pb-5 gap-3">
-          <button className="bg-white grow outline outline-1 outline-[var(--secondary)] rounded px-12 py-2">
+          <button className="bg-white grow outline outline-1 outline-[var(--secondary)] rounded py-2">
             Help Fill Form
           </button>
           <button
-            className="bg-[var(--primary)]  rounded px-10 py-2 text-white"
+            className="bg-[var(--primary)] w-1/3 rounded py-2 text-white"
             onClick={submitHandler}
           >
             Next

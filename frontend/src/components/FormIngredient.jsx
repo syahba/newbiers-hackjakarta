@@ -25,8 +25,8 @@ function FormIngredient() {
         data.map(elm => {
           return (
             <div key={elm} className="w-full flex gap-3 mb-2">
-              <input value={elm} type="text" className="outline w-full outline-1 outline-[var(--grey)] rounded py-2 px-3" />
-              <input type="text" className="outline w-6/12 outline-1 outline-[var(--grey)] rounded py-2 px-3" />
+              <input value={elm} type="text" className="outline w-full outline-1 outline-[var(--grey)] rounded py-1 px-3" />
+              <input type="text" className="outline w-6/12 outline-1 outline-[var(--grey)] rounded py-1 px-3" />
             </div>
           )
         })
