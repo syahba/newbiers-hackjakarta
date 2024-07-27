@@ -3,10 +3,11 @@ const { v4: uuidv4 } = require("uuid")
 const prisma = new PrismaClient();
 
 async function createProduct(newProduct){
+    const id = uuidv4();
     try{
         await prisma.product.create({
             data: {
-                id: uuidv4(),
+                id: id,
                 name: newProduct.name,
                 type: newProduct.type,
                 price: newProduct.price,
@@ -18,35 +19,13 @@ async function createProduct(newProduct){
                 ingredient: newProduct.ingredient,
             }
         });
+        return id;
     }
     catch (err){
         return err;
     }
 }
 
-async function createProduct(newProduct){
-    try{
-        await prisma.product.create({
-            data: {
-                id: uuidv4(),
-                name: newProduct.name,
-                type: newProduct.type,
-                price: newProduct.price,
-                image: newProduct.image,
-                description: newProduct.description,
-                score: newProduct.score,
-                grade: newProduct.grade,
-                nutrition: newProduct.nutrition,
-                ingredient: newProduct.ingredient,
-            }
-        });
-
-        return true;
-    }
-    catch (err){
-        return err;
-    }
-}
 
 async function getAllProduct(){
     try{
@@ -70,14 +49,27 @@ async function getProductById(id){
     }
 }
 
-async function updateProduct(id){
+async function updateProduct(id,product){
     try{
-        const product = await prisma.product.findMany({
-            where: {id:id}
+        await prisma.product.update({
+            where: {id:id},
+            data: {
+                name: product.name,
+                type: product.type,
+                price: product.price,
+                image: product.image,
+                description: product.description,
+                score: product.score,
+                grade: product.grade,
+                nutrition: product.nutrition,
+                ingredient: product.ingredient,
+            }
         });
-        return product;
+        return id;
     }
     catch (err){
         return err;
     }
 }
+
+module.exports = {createProduct,getAllProduct,getProductById,updateProduct};

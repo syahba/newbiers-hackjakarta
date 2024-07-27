@@ -17,7 +17,7 @@ model product {
   id String @id
   name String
   type String
-  price BigInt
+  price Int
   image String
   description String
   score Int

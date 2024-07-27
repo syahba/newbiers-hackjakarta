@@ -3,7 +3,7 @@ CREATE TABLE "product" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "type" TEXT NOT NULL,
-    "price" BIGINT NOT NULL,
+    "price" INTEGER NOT NULL,
     "image" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "score" INTEGER NOT NULL,
