@@ -67,7 +67,7 @@ router.post('/',async (req,res)=>{
             score: req.body.score,
             grade: req.body.grade,
             nutrition: req.body.nutrition,
-            ingredient: req.body.ingredient,
+            ingredient: req.body.ingredients,
         }
         const insertToDatabase = await model.createProduct(product);
         const respond = {
@@ -153,7 +153,7 @@ router.post('/generate/nutriscore',async (req,res)=>{
                 type: type,
                 grade: gradeData.grade,
                 grade_detail: Function.getGrade(gradeData.grade, type),
-                nutrition: nutritionData ?? {},
+                nutrition: nutritionData.nutrition ?? {},
                 ingredients: ingredients ?? []
             }
         }

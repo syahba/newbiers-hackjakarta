@@ -29,6 +29,7 @@ async function generateIngredientNutrition(name) {
 
   try {
       const result = await chat.sendMessage(input);
+      console.log(result.response.text)
       const res =result.response.text()
         .replace("```json", "")
         .replace("```", "")

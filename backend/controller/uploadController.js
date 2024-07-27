@@ -21,7 +21,9 @@ router.post('/', upload.single('image'), (req, res) => {
         const filePath = `/images/${req.file.filename}`;
         res.json({
           message: 'Image uploaded successfully',
-          filePath: filePath
+          data: {
+            url: filePath
+          }
         });
     } catch (error) {
         res.status(400).send('Error uploading image');

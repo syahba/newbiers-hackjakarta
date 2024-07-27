@@ -22,7 +22,8 @@ async function createProduct(newProduct){
         return id;
     }
     catch (err){
-        return err;
+        console.log(err)
+        throw err;
     }
 }
 
