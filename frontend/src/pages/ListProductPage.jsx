@@ -15,13 +15,13 @@ function ListProductPage() {
   const { role } = useSelector((state) => state.loginSlice);
   const { products } = useSelector((state) => state.productSlice);
 
-  // useEffect(() => {
-  //   if (!role) {
-  //     navigate('/');
-  //   } else {
-  //     dispatch(getAllProducts());
-  //   };
-  // }, [products]);
+  useEffect(() => {
+    if (!role) {
+      navigate("/");
+    } else {
+      dispatch(getAllProducts());
+    }
+  }, []);
 
   return (
     <div>
@@ -29,11 +29,11 @@ function ListProductPage() {
 
       <SearchBar></SearchBar>
 
-      <Card></Card>
-      {/* {products.map((v, i) => (
+      {products.map((v, i) => (
         <div key={i}>
+          <Card product={v}></Card>
         </div>
-      ))} */}
+      ))}
 
       {role === "merchant" && (
         <FontAwesomeIcon

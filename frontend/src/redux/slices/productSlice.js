@@ -19,18 +19,23 @@ const productSlice = createSlice({
 
 export const { setAllProducts, setDetailProduct } = productSlice.actions;
 
-export const getAllProducts = (search) => async (dispatch) => {
+export const getAllProducts = (search = '') => async (dispatch) => {
   try {
     const { data: { data } } = await axios({
       method: 'get',
-      url: 'http://172.16.59.65:8000/api/product',
-      params: search,
+      url: `http://172.16.59.65:8000/api/product?search=${search}`,
       responseType: 'json'
+    });
+
+    data.forEach(v => {
+      v.price = Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR"
+      }).format(v.price).slice(0, -3);
     });
 
     return dispatch(setAllProducts(data));
   } catch (err) {
-    console.error(err);
     return dispatch(setAllProducts([]));
   };
 };
