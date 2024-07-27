@@ -2,8 +2,11 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../components/Navbar";
 import "../index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 function CreateProductPage() {
+  const navigation = useNavigate();
+
   return (
     <div>
       <Navbar header={"Create Product"}></Navbar>
@@ -51,8 +54,15 @@ function CreateProductPage() {
       </div>
 
       <div className="flex justify-between mx-4">
-        <button className="bg-white outline outline-1 outline-[var(--secondary)] rounded px-12 py-2">Help Fill Form</button>
-        <button className="bg-[var(--primary)] rounded px-10 py-2 text-white">Next</button>
+        <button className="bg-white outline outline-1 outline-[var(--secondary)] rounded px-12 py-2 drop-shadow">
+          Help Fill Form
+        </button>
+        <button
+          className="bg-[var(--primary)] rounded px-10 py-2 text-white drop-shadow-md"
+          onClick={() => navigation("/products/nutrition")}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
