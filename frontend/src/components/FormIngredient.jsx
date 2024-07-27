@@ -15,7 +15,7 @@ function FormIngredient() {
       </label>
       <button 
         className="w-4 h-4 bg-[var(--secondary)] text-white rounded-sm flex items-center justify-center"
-        onClick={() => setData([1,2,3])}
+        onClick={() => setData([1,2,3,4,5,6,7,8,9,10])}
       >
         <FontAwesomeIcon icon={faPlus} className="h-2" />
       </button>

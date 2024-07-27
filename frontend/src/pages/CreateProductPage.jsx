@@ -124,7 +124,7 @@ function CreateProductPage() {
 
       <div className="absolute bottom-0 w-full bg-white text-sm">
         <div className="flex mx-4 pt-3 pb-5 gap-3">
-          <button className="bg-white grow outline outline-1 outline-[var(--secondary)] rounded py-2">
+          <button disabled className="bg-white grow text-white outline-[var(--secondary)] rounded py-2">
             Help Fill Form
           </button>
           <button

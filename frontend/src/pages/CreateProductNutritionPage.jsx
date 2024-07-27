@@ -7,7 +7,7 @@ function CreateProductNutritionPage() {
   return (
     <div className="relative h-full">
       <Navbar header={"Create Product - Nutri-Score"}></Navbar>
-      <div className="mb-6">
+      <div className="mb-6 max-h-[80%] overflow-y-auto">
         <div className="input-group-uniq">
           <label htmlFor="name" className="product-label-uniq">
             Product Name
@@ -28,7 +28,7 @@ function CreateProductNutritionPage() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 w-full bg-white text-sm">
+      <div className=" absolute bottom-0 w-full bg-white text-sm">
         <div className="flex mx-4 pt-3 pb-5 gap-3">
           <button className="bg-white grow outline outline-1 outline-[var(--secondary)] rounded py-2">
           Generate Nutri-Score
