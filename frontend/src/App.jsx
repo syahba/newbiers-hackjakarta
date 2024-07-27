@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import LoginPage from "./pages/LoginPage"
 import ListProductPage from "./pages/ListProductPage"
+import CreateProductPage from "./pages/CreateProductPage"
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage></LoginPage>}></Route>
         <Route path="/products" element={<ListProductPage></ListProductPage>}></Route>
+        <Route path="/products/create" element={<CreateProductPage></CreateProductPage>}></Route>
       </Routes>
     </BrowserRouter>
   )

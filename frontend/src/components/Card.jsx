@@ -1,9 +1,9 @@
-import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 
 function Card({ product, setIsOpen }) {
-  const { role } = useSelector((state) => state.productSlice);
+  const { role } = useSelector((state) => state.loginSlice);
 
   return (
     <div className="mx-4 bg-white drop-shadow-md rounded-md flex items-start gap-4 my-3">
@@ -22,22 +22,19 @@ function Card({ product, setIsOpen }) {
         />
       </div>
 
-      <div className="w-44 py-3 h-28 flex flex-col justify-between">
+      <div className="w-48 py-3 h-28 flex flex-col justify-between">
         <div className="">
           <h2 className="text-sm font-bold mb-1">{product.name}</h2>
-          <p className="text-[8px] text-[var(--disabled)]">
+          <p className="text-[8px] text-[var(--grey)]">
             {product.description}
           </p>
         </div>
 
-        <div>
+        <div className="flex justify-between">
           <p className="text-xs">{product.price}</p>
 
           {role === "merchant" && (
-            <div>
-              <FontAwesomeIcon icon={faPenToSquare} />
-              <FontAwesomeIcon icon={faTrash} />
-            </div>
+            <FontAwesomeIcon icon={faPenToSquare} />
           )}
         </div>
       </div>

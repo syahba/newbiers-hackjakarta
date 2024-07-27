@@ -19,13 +19,13 @@ function SearchBar() {
       <input
         type="text"
         placeholder="What shall we deliver?"
-        className="bg-[var(--grey)] px-8 py-1.5 w-screen mx-4 rounded"
+        className="bg-[var(--light-grey)] px-8 py-1.5 w-screen mx-4 rounded"
         value={input}
         onChange={(e) => inputHandler(e.target.value)}
       />
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
-        className="absolute left-7 top-2.5 text-[var(--disabled)]"
+        className="absolute left-7 top-2.5 text-[var(--grey)]"
       />
     </div>
   );
