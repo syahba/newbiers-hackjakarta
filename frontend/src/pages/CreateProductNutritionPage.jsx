@@ -4,7 +4,8 @@ import Nutrition from "../components/Nutrition";
 import FormIngredient from "../components/FormIngredient";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createProduct } from "../redux/slices/productSlice";
+import { createProduct, generateNutrition } from "../redux/slices/productSlice";
+import { useState } from "react";
 
 function CreateProductNutritionPage() {
   const dispatch = useDispatch();
@@ -12,6 +13,8 @@ function CreateProductNutritionPage() {
 
   const { state } = useLocation();
   const { ingredient } = useSelector((state) => state.productSlice);
+
+  const [ingredients, setIngredients] = useState(ingredient.ingredients)
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -25,8 +28,15 @@ function CreateProductNutritionPage() {
     navigate("/products");
   };
 
+  const gnenerateNutrition = (e) => {
+    e.preventDefault();
+
+    dispatch(generateNutrition(ingredients));
+  }
+
+  console.log(ingredient);
   return (
-    <div className="">
+    <div className="relative h-full">
       {Object.keys(ingredient).length !== 0 ? (
         <div className="relative h-full">
           <Navbar header={"Create Product - Nutri-Score"}></Navbar>
@@ -55,13 +65,16 @@ function CreateProductNutritionPage() {
             </div>
 
             <div className="mx-4 mb-3">
-              <FormIngredient ingredient={ingredient.ingredients} />
+              <FormIngredient ingredient={ingredients} setIngredient={setIngredients} />
             </div>
           </div>
 
           <div className="absolute bottom-0 w-full bg-white text-sm">
             <div className="flex mx-4 pt-3 pb-5 gap-3">
-              <button className="bg-white grow outline outline-1 outline-[var(--secondary)] rounded py-2">
+              <button 
+                className="bg-white grow outline outline-1 outline-[var(--secondary)] rounded py-2"
+                onClick={gnenerateNutrition}
+              >
                 Generate Nutri-Score
               </button>
               <button

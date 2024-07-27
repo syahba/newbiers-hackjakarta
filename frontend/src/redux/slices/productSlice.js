@@ -88,7 +88,7 @@ export const generateIngredient = (name) => async (dispatch) => {
     const { data: { data } } = await axios({
       method: 'post',
       url: `http://172.16.59.65:8000/api/product/generate/ingredient-nutriscore`,
-      data: name,
+      data: {name},
       responseType: 'json'
     });
 

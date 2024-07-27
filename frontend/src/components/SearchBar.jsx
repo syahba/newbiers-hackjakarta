@@ -15,7 +15,7 @@ function SearchBar() {
   };
 
   return (
-    <div className="my-4 mx-3 bg-[var(--light-grey)] flex items-center px-3 rounded">
+    <div className="mb-4 mx-3 bg-[var(--light-grey)] flex items-center px-3 rounded">
       <FontAwesomeIcon
         icon={faMagnifyingGlass}
         className="text-[var(--grey)] mr-3"

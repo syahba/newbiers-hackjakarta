@@ -31,13 +31,15 @@ function ListProductPage() {
     <div className="relative h-full">
       <Navbar header={"List Product"}></Navbar>
 
-      <SearchBar></SearchBar>
+      <div className="h-[90%] overflow-y-auto">
+        <SearchBar></SearchBar>
 
-      {products.map((v, i) => (
-        <div key={i}>
-          <Card product={v} setIsOpen={setIsOpen} setId={setId}></Card>
-        </div>
-      ))}
+        {products.map((v, i) => (
+          <div key={i}>
+            <Card product={v} setIsOpen={setIsOpen} setId={setId}></Card>
+          </div>
+        ))}
+      </div>
 
       {role === "merchant" && (
         <FontAwesomeIcon

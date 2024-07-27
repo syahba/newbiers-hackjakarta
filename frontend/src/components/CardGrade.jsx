@@ -5,10 +5,16 @@ import Modal from "./Modal";
 
 function CardGrade({ nutrition }) {
   const [isOpen, setIsOpen] = useState(false);
-
+console.log(nutrition)
   return (
-    <div className="bg-white w-full drop-shadow-md rounded flex flex-col items-start outline outline-1.5 outline-[var(--secondary)]">
-      <div className="text-white h-20 px-8 w-full flex justify-between items-center bg-[var(--secondary)]">
+    <div 
+      className={`bg-white w-full drop-shadow-md rounded flex flex-col items-start outline outline-1.5 outline-[var(--secondary)]`}
+      style={{outlineColor: nutrition.grade_detail.color}}
+      >
+      <div 
+        className="text-white h-20 px-8 w-full flex justify-between items-center bg-[var(--secondary)]"
+        style={{backgroundColor: nutrition.grade_detail.color}}
+        >
         <div>Nutri-Score Grade:</div>
         <div className="text-4xl font-bold">{nutrition.grade}</div>
       </div>
