@@ -2,13 +2,17 @@ import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 
-function Card({ product }) {
+function Card({ product, setIsOpen }) {
   const { role } = useSelector((state) => state.productSlice);
 
   return (
     <div className="mx-4 bg-white drop-shadow-md rounded-md flex items-start gap-4 my-3">
       <div className="relative">
-        <h1 className="bg-[var(--primary)] py-1 px-2 font-bold text-white text-sm absolute rounded-tl-md">
+        <h1
+          className="py-1 px-2 font-bold text-white text-sm absolute rounded-tl-md"
+          style={{ backgroundColor: product.grade_detail.color }}
+          onClick={() => setIsOpen({ status: true, id: product.id })}
+        >
           {product.grade}
         </h1>
         <img
@@ -21,7 +25,9 @@ function Card({ product }) {
       <div className="w-44 py-3 h-28 flex flex-col justify-between">
         <div className="">
           <h2 className="text-sm font-bold mb-1">{product.name}</h2>
-          <p className="text-[8px] text-[var(--disabled)]">{product.description}</p>
+          <p className="text-[8px] text-[var(--disabled)]">
+            {product.description}
+          </p>
         </div>
 
         <div>

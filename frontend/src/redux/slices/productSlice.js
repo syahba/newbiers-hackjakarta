@@ -40,4 +40,18 @@ export const getAllProducts = (search = '') => async (dispatch) => {
   };
 };
 
+export const getDetailProduct = (id) => async (dispatch) => {
+  try {
+    const { data: { data } } = await axios({
+      method: 'get',
+      url: `http://172.16.59.65:8000/api/product/${id}`,
+      responseType: 'json'
+    });
+
+    return dispatch(setDetailProduct(data));
+  } catch (err) {
+    return dispatch(setDetailProduct({}));
+  };
+};
+
 export default productSlice.reducer;

@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getAllProducts } from "../redux/slices/productSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
+import Modal from "../components/Modal";
 
 function ListProductPage() {
   const dispatch = useDispatch();
@@ -14,6 +15,11 @@ function ListProductPage() {
 
   const { role } = useSelector((state) => state.loginSlice);
   const { products } = useSelector((state) => state.productSlice);
+
+  const [isOpen, setIsOpen] = useState({
+    status: false,
+    id: ''
+  });
 
   useEffect(() => {
     if (!role) {
@@ -31,7 +37,7 @@ function ListProductPage() {
 
       {products.map((v, i) => (
         <div key={i}>
-          <Card product={v}></Card>
+          <Card product={v} setIsOpen={setIsOpen}></Card>
         </div>
       ))}
 
@@ -41,6 +47,8 @@ function ListProductPage() {
           className="text-white bg-[var(--primary)] py-2 px-2.5 rounded fixed bottom-5 right-5 drop-shadow-md"
         />
       )}
+
+      {isOpen.status && (<Modal isOpen={isOpen} setIsOpen={setIsOpen}></Modal>)}
     </div>
   );
 }
