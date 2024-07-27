@@ -13,10 +13,11 @@ function LoginPage() {
   };
 
   return (
-    <div className="login-container">
-      <h1 className="font-bold text-[var(--secondary)] text-4xl">Helathy</h1>
-
-      <div className="text-center">
+    <div className="flex flex-col justify-center items-center h-full">
+      <div className="h-2/5 w-full flex items-center justify-center">
+        <h1 className="font-bold text-[var(--secondary)] text-4xl">Helathy</h1>
+      </div>
+      <div className="h-1/4 text-center">
         <h2 className="text-[var(--neutral)] font-semibold text-xl mb-4">Login</h2>
 
         <div>
@@ -25,7 +26,11 @@ function LoginPage() {
         </div>
       </div>
 
-      <p className="text-[var(--neutral)]">by Newbiers</p>
+      <div className='grow relative w-full'>
+        <div className='absolute bottom-8 w-full flex'>
+          <p className="text-[var(--neutral)] m-auto">by Newbiers</p>
+        </div>
+      </div>
     </div>
   );
 }
