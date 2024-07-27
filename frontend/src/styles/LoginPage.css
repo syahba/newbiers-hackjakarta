@@ -1,0 +1,9 @@
+.login-container {
+  @apply items-center justify-center gap-56;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-btn {
+  @apply block bg-[var(--primary)] text-white py-3 px-6 rounded-md my-3 text-sm;
+}
