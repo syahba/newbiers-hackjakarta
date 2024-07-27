@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const model = require("../model/productModel");
+const ai = require("../helper/ai/gemini");
 
 // GET
 router.get('/',async (req,res)=>{
@@ -127,6 +128,28 @@ router.put('/:id',async (req,res)=>{
     catch (err){
         return res.status(500).json({message:"something went wrong",error:err});
     }
-})
+});
+
+
+router.post('/generate/ingredient-nutriscore',async (req,res)=>{
+    try{
+        const name = req.body.name
+        const c = await ai.generateIngredientNutrition(name)
+
+
+        // const data = {
+        //     ""
+        // }
+
+        const respond = {
+            message:"success",
+            data: data
+        }
+        return res.status(201).json(respond);
+    }
+    catch (err){
+        return res.status(500).json({message:"something went wrong",error:err});
+    }
+});
 
 module.exports = router;
