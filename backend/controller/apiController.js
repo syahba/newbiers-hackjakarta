@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const model = require("../model/productModel");
 const ai = require("../helper/ai/gemini");
+const Function = require("../helper/function");
+const Grade = require("../helper/grade/grade");
 
 router.get('/',async (req,res)=>{
     const search = req.query.search;
@@ -63,18 +65,22 @@ router.post('/',async (req,res)=>{
 router.post('/generate/ingredient-nutriscore',async (req,res)=>{
     try{
         const name = req.body.name
-        const c = await ai.generateIngredientNutrition(name)
 
-
-        // const data = {
-        //     ""
-        // }
+        const generatedData = await ai.generateIngredientNutrition(name)
+        const gradeData = Grade.generateContent(generatedData)
 
         const respond = {
             message:"success",
-            data: data
+            data: {
+                score: gradeData.score,
+                type: generatedData.type,
+                grade: gradeData.grade,
+                grade_detail: Function.getGrade(gradeData.grade, generatedData.type),
+                nutrition: generatedData.nutrition ?? {},
+                ingredients: generatedData.ingredient ?? []
+            }
         }
-        return res.status(201).json(respond);
+        return res.status(200).json(respond);
     }
     catch (err){
         return res.status(500).json({message:"something went wrong",error:err});

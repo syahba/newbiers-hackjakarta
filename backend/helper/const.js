@@ -55,3 +55,7 @@ const GRADES = {
     },
   },
 }
+
+module.exports = {
+  GRADES
+};
