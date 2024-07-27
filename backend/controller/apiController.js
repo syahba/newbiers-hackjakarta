@@ -3,9 +3,10 @@ const router = express.Router();
 const model = require("../model/productModel");
 
 router.get('/',async (req,res)=>{
-    const id = req.params.id;
-    if(id === undefined){
-        const product = await model.getProductById(id);
+    const search = req.query.search;
+
+    if(search === undefined){
+        const product = await model.getProductByName(search);
         const respond = {
             message: "success",
             data: product
@@ -17,6 +18,16 @@ router.get('/',async (req,res)=>{
     const respond = {
         message: "success",
         data: productList
+    }
+    return res.status(200).json(respond);
+});
+
+router.get('/:id',async (req,res)=>{
+    const id = req.params.id;
+    const product = await model.getProductById(id);
+    const respond = {
+        message: "success",
+        data: product
     }
     return res.status(200).json(respond);
 });
