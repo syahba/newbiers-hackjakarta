@@ -10,6 +10,7 @@
   --secondary: #005339;
   --neutral: #2D2D2D;
   --grey: #F2F2F2;
+  --disabled: #a7a7a7;
 }
 
 * {
@@ -17,7 +18,7 @@
 }
 
 html {
-  @apply scroll-smooth h-[800px];
+  @apply scroll-smooth h-[800px] w-[360px];
 }
 
 body {
