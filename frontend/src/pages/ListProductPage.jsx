@@ -30,7 +30,7 @@ function ListProductPage() {
   }, []);
 
   return (
-    <div>
+    <div className="relative h-full">
       <Navbar header={"List Product"}></Navbar>
 
       <SearchBar></SearchBar>
@@ -44,7 +44,7 @@ function ListProductPage() {
       {role === "merchant" && (
         <FontAwesomeIcon
           icon={faPlus}
-          className="text-white bg-[var(--primary)] py-2 px-2.5 rounded fixed bottom-5 right-5 drop-shadow-md"
+          className="text-white bg-[var(--primary)] py-4 px-4 shadow rounded absolute bottom-8 right-5 drop-shadow-md"
           onClick={() => navigate('/products/create')}
         />
       )}

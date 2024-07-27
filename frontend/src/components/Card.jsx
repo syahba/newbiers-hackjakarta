@@ -7,7 +7,7 @@ function Card({ product, setIsOpen }) {
 
   return (
     <div className="mx-4 bg-white drop-shadow-md rounded-md flex items-start gap-4 my-3">
-      <div className="relative">
+      <div className="relative w-28">
         <h1
           className="py-1 px-2 font-bold text-white text-sm absolute rounded-tl-md"
           style={{ backgroundColor: product.grade_detail.color }}
@@ -22,16 +22,16 @@ function Card({ product, setIsOpen }) {
         />
       </div>
 
-      <div className="w-48 py-3 h-28 flex flex-col justify-between">
+      <div className="grow mr-4 py-3 h-28 flex flex-col justify-between">
         <div className="">
           <h2 className="text-sm font-bold mb-1">{product.name}</h2>
-          <p className="text-[8px] text-[var(--grey)]">
+          <p className="text-xs text-[var(--grey)]">
             {product.description}
           </p>
         </div>
 
-        <div className="flex justify-between">
-          <p className="text-xs">{product.price}</p>
+        <div className="flex justify-between items-center">
+          <p className="text-sm">{product.price}</p>
 
           {role === "merchant" && (
             <FontAwesomeIcon icon={faPenToSquare} />

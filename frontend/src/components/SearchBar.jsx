@@ -15,17 +15,17 @@ function SearchBar() {
   };
 
   return (
-    <div className="relative text-center my-4 w-[360px]">
+    <div className="my-4 mx-3 bg-[var(--light-grey)] flex items-center px-3 rounded">
+      <FontAwesomeIcon
+        icon={faMagnifyingGlass}
+        className="text-[var(--grey)] mr-3"
+      />
       <input
         type="text"
         placeholder="What shall we deliver?"
-        className="bg-[var(--light-grey)] px-8 py-1.5 w-screen mx-4 rounded"
+        className="bg-[var(--light-grey)] py-2 w-full text-sm focus:outline-none"
         value={input}
         onChange={(e) => inputHandler(e.target.value)}
-      />
-      <FontAwesomeIcon
-        icon={faMagnifyingGlass}
-        className="absolute left-7 top-2.5 text-[var(--grey)]"
       />
     </div>
   );
