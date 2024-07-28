@@ -7,7 +7,7 @@ function Navbar({ header }) {
 
   return (
     <div className="flex items-center bg-white drop-shadow-md py-3 text-[var(--neutral)] mb-5">
-      <FontAwesomeIcon icon={faArrowLeft} className="mx-5 text-sm" onClick={() => navigate(-1)} />
+      <FontAwesomeIcon icon={faArrowLeft} className="mx-5 text-sm cursor-pointer" onClick={() => navigate(-1)} />
       <h1 className="font-semibold text-base">{header}</h1>
     </div>
   );

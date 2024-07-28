@@ -5,7 +5,7 @@ import Modal from "./Modal";
 
 function CardGrade({ nutrition }) {
   const [isOpen, setIsOpen] = useState(false);
-console.log(nutrition)
+
   return (
     <div 
       className={`bg-white w-full drop-shadow-md rounded flex flex-col items-start outline outline-1.5 outline-[var(--secondary)]`}

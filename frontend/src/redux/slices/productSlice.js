@@ -21,7 +21,8 @@ const productSlice = createSlice({
       state.url = action.payload;
     },
     setIngredient(state, action) {
-      state.ingredient = action.payload;
+      state.ingredient = action.payload.data;
+      state.message = action.payload.message;
     },
     setMessage(state, action) {
       state.message = action.payload;
@@ -88,13 +89,14 @@ export const generateIngredient = (name) => async (dispatch) => {
     const { data: { data } } = await axios({
       method: 'post',
       url: `http://172.16.59.65:8000/api/product/generate/ingredient-nutriscore`,
-      data: {name},
+      data: { name },
       responseType: 'json'
     });
 
-    return dispatch(setIngredient(data));
+    console.log(data);
+    return dispatch(setIngredient({ data, message: 'success generate ingredient' }));
   } catch (err) {
-    return dispatch(setIngredient({}));
+    return dispatch(setIngredient({ data: {}, message: 'error' }));
   };
 };
 
@@ -119,15 +121,31 @@ export const generateNutrition = (type, ingredient) => async (dispatch) => {
       method: 'post',
       url: `http://172.16.59.65:8000/api/product/generate/nutriscore`,
       data: {
-        type: type,
+        type,
         ingredients: ingredient
       },
       responseType: 'json'
     });
 
-    return dispatch(setIngredient(data));
+    return dispatch(setIngredient({ data, message: 'success generate nutrition' }));
   } catch (err) {
-    return dispatch(setIngredient({}));
+    return dispatch(setIngredient({ data: {}, message: 'error' }));
+  };
+};
+
+export const updateProduct = (product) => async (dispatch) => {
+  try {
+    const { data: { message } } = await axios({
+      method: 'put',
+      url: `http://172.16.59.65:8000/api/product/${product.id}`,
+      data: product,
+      responseType: 'json'
+    });
+
+    console.log(message);
+    return dispatch(setMessage(message));
+  } catch (err) {
+    return dispatch(setMessage('error'));
   };
 };
 

@@ -2,23 +2,31 @@ import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../components/Navbar";
 import "../index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { generateIngredient, uploadImage } from "../redux/slices/productSlice";
+import { generateIngredient, getDetailProduct, uploadImage } from "../redux/slices/productSlice";
 
 function CreateProductPage() {
   const navigation = useNavigate();
   const dispatch = useDispatch();
 
+  const { state } = useLocation();
   const { url } = useSelector((state) => state.productSlice);
+  const { role } = useSelector(state => state.loginSlice);
 
+  useEffect(() => {
+    if (!role) {
+      navigate("/");
+    };
+  }, []);
+
+  const checkProduct = state ? Object.keys(state).length !== 0 : false;
   const [input, setInput] = useState({
-    name: "",
-    price: 0,
-    description: "",
-    image:
-      "https://images.unsplash.com/photo-1657759558201-d0229a8c87d5?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    name: checkProduct ? state.name : "",
+    price: checkProduct ? parseInt(state.price.replace(/[^0-9.-]+/g,"").replace(".", "")) : 0,
+    description: checkProduct ? state.description : "",
+    image: checkProduct ? state.image : ""
   });
 
   const imageHandler = (e) => {
@@ -43,13 +51,20 @@ function CreateProductPage() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
+    
     if (Object.values(input).includes("")) {
       alert("Please fill all field data!");
+    } else if (checkProduct && state.name === input.name) {
+      state.price = parseInt(input.price);
+      state.description = input.description;
+      state.image = url;
+
+      navigation("/products/create/nutrition", { state: state });
     } else {
       dispatch(generateIngredient(input.name));
-
+      
       input.image = url;
+      input.price = parseInt(input.price);
       navigation("/products/create/nutrition", { state: input });
     }
   };
@@ -114,16 +129,18 @@ function CreateProductPage() {
             className="hidden"
             onChange={imageHandler}
           />
-          <img
-            className="w-[200px] h-[200px] object-cover rounded"
-            src={input.image}
-            alt="preview-img"
-          />
+          {input.image && (
+            <img
+              className="w-[200px] h-[200px] object-cover rounded"
+              src={input.image}
+              alt="preview-img"
+            />
+          )}
         </div>
       </div>
 
-      <div className="absolute bottom-0 w-full bg-white text-sm">
-        <div className="flex mx-4 pt-3 pb-5 gap-3">
+      <div className="absolute bottom-0 w-full text-sm bg-white">
+        <div className="flex gap-3 pt-3 pb-5 mx-4">
           <button disabled className="bg-white grow text-white outline-[var(--secondary)] rounded py-2">
             Help Fill Form
           </button>

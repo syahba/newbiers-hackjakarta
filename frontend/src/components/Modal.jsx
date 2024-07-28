@@ -2,7 +2,6 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Modal({ nutrition, setIsOpen }) {
-  console.log(nutrition);
   return (
     <div className="bg-[#1515153b]">
       <div className="bg-white drop-shadow-lg rounded-lg m-4 p-4 w-[360px] h-fit absolute inset-0">
