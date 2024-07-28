@@ -29,8 +29,8 @@ function Modal({ nutrition, setIsOpen }) {
         </a>
 
         <img
-          className="w-72 h-44 object-cover mt-1"
-          src={nutrition.grade_detail.image}
+          className="object-cover mt-1 w-72 h-44"
+          src="/grade.png"
           alt="nutri-score"
         />
       </div>
