@@ -55,7 +55,7 @@ function CreateProductPage() {
     if (Object.values(input).includes("")) {
       alert("Please fill all field data!");
     } else if (checkProduct && state.name === input.name) {
-      state.price = input.price;
+      state.price = parseInt(input.price);
       state.description = input.description;
       state.image = url;
 
@@ -64,6 +64,7 @@ function CreateProductPage() {
       dispatch(generateIngredient(input.name));
       
       input.image = url;
+      input.price = parseInt(input.price);
       navigation("/products/create/nutrition", { state: input });
     }
   };
@@ -138,8 +139,8 @@ function CreateProductPage() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 w-full bg-white text-sm">
-        <div className="flex mx-4 pt-3 pb-5 gap-3">
+      <div className="absolute bottom-0 w-full text-sm bg-white">
+        <div className="flex gap-3 pt-3 pb-5 mx-4">
           <button disabled className="bg-white grow text-white outline-[var(--secondary)] rounded py-2">
             Help Fill Form
           </button>

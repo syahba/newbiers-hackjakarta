@@ -9,10 +9,10 @@ function Card({ product, setIsOpen, setId }) {
   const { role } = useSelector((state) => state.loginSlice);
 
   return (
-    <div className="mx-4 bg-white drop-shadow-md rounded-md flex items-start gap-4 my-3">
+    <div className="flex items-start gap-4 mx-4 my-3 bg-white rounded-md drop-shadow-md">
       <div className="relative w-28">
         <h1
-          className="py-1 px-2 font-bold text-white text-sm absolute rounded-tl-md cursor-pointer"
+          className="absolute px-2 py-1 text-sm font-bold text-white cursor-pointer rounded-tl-md"
           style={{ backgroundColor: product.grade_detail.color }}
           onClick={() => {
             setIsOpen(true);
@@ -24,26 +24,26 @@ function Card({ product, setIsOpen, setId }) {
         <img
           src={product.image}
           alt="product-img"
-          className="w-28 h-28 object-cover rounded-l-md"
+          className="object-cover w-28 h-28 rounded-l-md"
         />
       </div>
 
-      <div className="grow mr-4 py-3 h-28 flex flex-col justify-between">
+      <div className="flex flex-col justify-between py-3 mr-4 grow h-28">
         <div className="">
-          <h2 className="text-sm font-bold mb-1">{product.name}</h2>
+          <h2 className="mb-1 text-sm font-bold">{product.name}</h2>
           <p className="text-xs text-[var(--grey)]">{product.description}</p>
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <p className="text-sm">{product.price}</p>
 
-          {role === "merchant" && (
+          {/* {role === "merchant" && (
             <FontAwesomeIcon
               icon={faPenToSquare}
               className="cursor-pointer"
               onClick={() => navigate("/products/create", { state: product })}
             />
-          )}
+          )} */}
         </div>
       </div>
     </div>

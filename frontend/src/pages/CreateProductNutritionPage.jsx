@@ -25,21 +25,20 @@ function CreateProductNutritionPage() {
       setData(ingredient);
       setIngredients(ingredient.ingredients);
       
-      if (Object.keys(state.ingredients).length !== 0) {
+      if (Object.hasOwn(state, "ingredients")) {
         setData(state);
         setIngredients(state.ingredients);
       };
+      console.log("helo", data, ingredient, state, ingredients)
     };
-  }, []);
+  }, [ingredient]);
 
   useEffect(() => {
     if (message === 'success generate nutrition') {
       setData(ingredient);
     };
-    console.log(data);
   }, [ingredient, message]);
 
-  console.log(ingredient)
   const submitHandler = (e) => {
     e.preventDefault();
     
@@ -48,9 +47,10 @@ function CreateProductNutritionPage() {
       ...ingredient,
     };
     
-    if (Object.keys(state.ingredients).length !== 0 && message === 'success generate nutrition') {
+    console.log("HEHEH", state, Object.hasOwn(state, "ingredients"))
+    if (Object.hasOwn(state, "ingredients") && message === 'success generate nutrition') {
       dispatch(updateProduct(payload));
-    } else if (Object.keys(state.ingredients).length === 0) {
+    } else if (!Object.hasOwn(state, "ingredients")) {
       dispatch(createProduct(payload));
     } else {
       dispatch(updateProduct(state));
@@ -70,7 +70,7 @@ function CreateProductNutritionPage() {
       {Object.keys(data).length !== 0 ? (
         <div className="relative h-full">
           <Navbar header={"Create Product - Nutri-Score"}></Navbar>
-
+          {console.log("MASUK", data)}
           <div className="mb-6 max-h-[80%] overflow-y-auto">
             <div className="input-group-uniq">
               <label htmlFor="name" className="product-label-uniq">
@@ -102,8 +102,8 @@ function CreateProductNutritionPage() {
             </div>
           </div>
 
-          <div className="absolute bottom-0 w-full bg-white text-sm">
-            <div className="flex mx-4 pt-3 pb-5 gap-3">
+          <div className="absolute bottom-0 w-full text-sm bg-white">
+            <div className="flex gap-3 pt-3 pb-5 mx-4">
               <button
                 className="bg-white grow outline outline-1 outline-[var(--secondary)] rounded py-2"
                 onClick={regenerateNutrition}
