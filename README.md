@@ -12,7 +12,7 @@ This repository is a project for hackjakarta 2024 were we integrated Nutri-Score
 1. Clone this repository:
 
    ```bash
-   https://github.com/syahba/newbiers-hackjakarta.git
+   git clone https://github.com/syahba/newbiers-hackjakarta.git
    ```
 
 2. Change to the repository's directory:
