@@ -36,7 +36,7 @@ export const getAllProducts = (search = '') => async (dispatch) => {
   try {
     const { data: { data } } = await axios({
       method: 'get',
-      url: `http://172.16.59.65:8000/api/product?search=${search}`,
+      url: `http://20.172.212.232:8000/api/product?search=${search}`,
       responseType: 'json'
     });
 
@@ -57,7 +57,7 @@ export const getDetailProduct = (id) => async (dispatch) => {
   try {
     const { data: { data } } = await axios({
       method: 'get',
-      url: `http://172.16.59.65:8000/api/product/${id}`,
+      url: `http://20.172.212.232:8000/api/product/${id}`,
       responseType: 'json'
     });
 
@@ -73,12 +73,12 @@ export const uploadImage = (image) => async (dispatch) => {
     formData.append('image', image);
     const { data: { data: { url } } } = await axios({
       method: 'post',
-      url: `http://172.16.59.65:8000/api/upload`,
+      url: `http://20.172.212.232:8000/api/upload`,
       data: formData,
       responseType: 'json'
     });
 
-    return dispatch(setImageUrl(`http://172.16.59.65:8000${url}`));
+    return dispatch(setImageUrl(`http://20.172.212.232:8000${url}`));
   } catch (err) {
     return dispatch(setImageUrl(''));
   };
@@ -88,7 +88,7 @@ export const generateIngredient = (name) => async (dispatch) => {
   try {
     const { data: { data } } = await axios({
       method: 'post',
-      url: `http://172.16.59.65:8000/api/product/generate/ingredient-nutriscore`,
+      url: `http://20.172.212.232:8000/api/product/generate/ingredient-nutriscore`,
       data: { name },
       responseType: 'json'
     });
@@ -104,7 +104,7 @@ export const createProduct = (product) => async (dispatch) => {
   try {
     const { data: { message } } = await axios({
       method: 'post',
-      url: `http://172.16.59.65:8000/api/product`,
+      url: `http://20.172.212.232:8000/api/product`,
       data: product,
       responseType: 'json'
     });
@@ -119,7 +119,7 @@ export const generateNutrition = (type, ingredient) => async (dispatch) => {
   try {
     const { data: { data } } = await axios({
       method: 'post',
-      url: `http://172.16.59.65:8000/api/product/generate/nutriscore`,
+      url: `http://20.172.212.232:8000/api/product/generate/nutriscore`,
       data: {
         type,
         ingredients: ingredient
@@ -137,7 +137,7 @@ export const updateProduct = (product) => async (dispatch) => {
   try {
     const { data: { message } } = await axios({
       method: 'put',
-      url: `http://172.16.59.65:8000/api/product/${product.id}`,
+      url: `http://20.172.212.232:8000/api/product/${product.id}`,
       data: product,
       responseType: 'json'
     });
