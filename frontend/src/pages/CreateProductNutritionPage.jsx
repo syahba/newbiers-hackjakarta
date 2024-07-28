@@ -4,7 +4,7 @@ import Nutrition from "../components/Nutrition";
 import FormIngredient from "../components/FormIngredient";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createProduct, generateNutrition } from "../redux/slices/productSlice";
+import { createProduct, generateNutrition, updateProduct } from "../redux/slices/productSlice";
 import { useEffect, useState } from "react";
 
 function CreateProductNutritionPage() {
@@ -12,40 +12,62 @@ function CreateProductNutritionPage() {
   const navigate = useNavigate();
 
   const { state } = useLocation();
-  const { ingredient } = useSelector((state) => state.productSlice);
+  const { ingredient, message } = useSelector((state) => state.productSlice);
   const { role } = useSelector(state => state.loginSlice);
 
+  const [data, setData] = useState({});
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
     if (!role) {
       navigate("/");
     } else {
+      setData(ingredient);
       setIngredients(ingredient.ingredients);
+      
+      if (Object.keys(state.ingredients).length !== 0) {
+        setData(state);
+        setIngredients(state.ingredients);
+      };
     };
-  }, [ingredient]);
+  }, []);
 
+  useEffect(() => {
+    if (message === 'success generate nutrition') {
+      setData(ingredient);
+    };
+    console.log(data);
+  }, [ingredient, message]);
+
+  console.log(ingredient)
   const submitHandler = (e) => {
     e.preventDefault();
-
+    
     const payload = {
       ...state,
       ...ingredient,
     };
+    
+    if (Object.keys(state.ingredients).length !== 0 && message === 'success generate nutrition') {
+      dispatch(updateProduct(payload));
+    } else if (Object.keys(state.ingredients).length === 0) {
+      dispatch(createProduct(payload));
+    } else {
+      dispatch(updateProduct(state));
+    }
 
-    dispatch(createProduct(payload));
     navigate("/products");
   };
 
-  const gnenerateNutrition = (e) => {
+  const regenerateNutrition = (e) => {
     e.preventDefault();
 
-    dispatch(generateNutrition(ingredient.type, ingredients));
+    dispatch(generateNutrition(data.type, ingredients));
   };
 
   return (
     <div className="relative h-full">
-      {Object.keys(ingredient).length !== 0 ? (
+      {Object.keys(data).length !== 0 ? (
         <div className="relative h-full">
           <Navbar header={"Create Product - Nutri-Score"}></Navbar>
 
@@ -65,11 +87,11 @@ function CreateProductNutritionPage() {
             </div>
 
             <div className="mx-4 mb-3">
-              <CardGrade nutrition={ingredient} />
+              <CardGrade nutrition={data} />
             </div>
 
             <div className="mx-4 mb-6">
-              <Nutrition nutrition={ingredient.nutrition} />
+              <Nutrition nutrition={data.nutrition} />
             </div>
 
             <div className="mx-4 mb-3">
@@ -84,7 +106,7 @@ function CreateProductNutritionPage() {
             <div className="flex mx-4 pt-3 pb-5 gap-3">
               <button
                 className="bg-white grow outline outline-1 outline-[var(--secondary)] rounded py-2"
-                onClick={gnenerateNutrition}
+                onClick={regenerateNutrition}
               >
                 Generate Nutri-Score
               </button>
