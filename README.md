@@ -30,7 +30,7 @@ This repository is a project for hackjakarta 2024 were we integrated Nutri-Score
    npm install
    ```
 
-4. Make sure you've installed and configured connection to MongoDB in `backend/.env` file:
+4. Make sure you've installed and configured connection to PostgreSQL in `backend/.env` file:
    ```
    PORT=8080
    DATABASE_URL=<DATABASE_URL>
